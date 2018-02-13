@@ -16,7 +16,7 @@ namespace YourNameHere
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new YourNameHere());
+            Application.Run(new YourNameHere_Form());
         }
     }
 }
