@@ -1,9 +1,8 @@
 language: csharp
 solution: YourNameHere.sln
 before_deploy:
-- cd YourNameHere/bin/Release
 - ls .
-- zip YourNameHere.zip *
+- zip YourNameHere.zip YourNameHere/bin/Release/*
 deploy:
   provider: releases
   api_key:
