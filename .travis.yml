@@ -2,7 +2,7 @@ language: csharp
 solution: YourNameHere.sln
 before_deploy:
   - cd YourNameHere/bin/Release
-  - zip YourNameHere.zip
+  - zip YourNameHere.zip *
 deploy:
   skip_cleanup: true
   provider: releases
