@@ -1,0 +1,16 @@
+language: csharp
+solution: YourNameHere.sln
+before_deploy:
+	- cd YourNameHere/bin/Release
+	- zip YourNameHere.zip
+deploy:
+	skip_cleanup: true
+	provider: releases
+	api_key:
+		secure: 3666beacb9754ac598cc6daf0d741309b2a49589
+	file:
+		- 'YourNameHere/bin/Release/YourNameHere.zip'
+	on:
+		tags: true
+		all_branches: true
+		repo: bonny1992/YourNameHere
