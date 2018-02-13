@@ -94,13 +94,16 @@ namespace YourNameHere
             if (!File.Exists(fileName)) return;
             var text = File.ReadAllText(fileName);
             Definitions.AllLetters full = JsonConvert.DeserializeObject<Definitions.AllLetters>(text);
+            e.Result = full;
+        }
+
+        private void ynhLoad_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Definitions.AllLetters full = (Definitions.AllLetters)e.Result;
             foreach (Definitions.Lettere temp in full.Text)
-            {
-                MessageBox.Show(string.Format("{0},{1}", temp.Letters, temp.NumPad));
-                this.ynhDataGridView.Invoke((Action)delegate
-                {
-                    lettereBindingSource.Add(temp);
-                });
+            { 
+                MessageBox.Show(temp.Letters.ToString());
+                if(temp != null) lettereBindingSource.Add(temp);
             }
             MessageBox.Show("Loading complete");
         }

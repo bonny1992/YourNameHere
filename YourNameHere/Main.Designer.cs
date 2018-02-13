@@ -143,6 +143,7 @@
             // ynhLoad
             // 
             this.ynhLoad.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ynhLoad_DoWork);
+            this.ynhLoad.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ynhLoad_RunWorkerCompleted);
             // 
             // YourNameHere_Form
             // 
