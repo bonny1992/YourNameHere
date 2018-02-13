@@ -1,16 +1,18 @@
 language: csharp
 solution: YourNameHere.sln
 before_deploy:
-  - cd YourNameHere/bin/Release
-  - zip YourNameHere.zip *
+- cd YourNameHere/bin/Release
+- zip YourNameHere.zip *
 deploy:
   skip_cleanup: true
   provider: releases
   api_key:
     secure: 3666beacb9754ac598cc6daf0d741309b2a49589
   file:
-    - 'YourNameHere/bin/Release/YourNameHere.zip'
+  - YourNameHere/bin/Release/YourNameHere.zip
   on:
     tags: true
     all_branches: true
     repo: bonny1992/YourNameHere
+  api-key:
+    secure: L8LlgKAbHPArcAauZjkzT0Gk3BIEb/wit+W7/J4fXLWZGZwdmMHZeLAmjBVLDTr2ojs1DG2Ucvw13sBtwQJxjOVjCrEgodppz34fc7qbdxBeoJuLmOYTc9kJEfyGekGAZEE7unJceRqDdNAxcbaFZOgqEYigtpcn1wFCWBf9N9Jeh3XtxKmU2zbNt+PuPHU8e2tQAkbiBhfB0Ayblcs1tcxhITxpx35QQWM9tLn5nxYB/8J2sAXj21iV4AZGg5/ruWrWWqHMLhAVI+A3F9MritsxBDojvhWh5sm0oJP7G564+QZ3jNvLiTcLcchoUFWcojPWS2RrYjGHRh+NLkW4CVl92lQ5axAGNX/CQ9+3StZQOUfC4LWxM0J2xpuUEpvQgOLqoUI3Ehl/SVlxaeatlkShBm1w4YVKdgOETLptlWIQtbNN1wrZHzWC7zlcPkoC1W2FiaOwFOdr3JP8rEuUftftGiaH5xDqliO8MiRNNrF1iD5Xq2mNyX8s3JY4aja8YIqesUQBnn0IjVkmQV48EzzTHGcPM+XPxcR5RJfmpoNCoFxFmAkYAZIvtbegVa+SMXVhuok4QVhfiYdfaQ7LAA8XnYW2u/lOGnjOpXYC163SYocUSZhxNl7mAt6a2y5VtnbeVJgD7wWxSJFJCNxQbwNrbqSofL1tG5hsR8kLXu4=
