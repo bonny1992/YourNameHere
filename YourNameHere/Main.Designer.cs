@@ -35,26 +35,17 @@
             this.minimizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ynhDataGridView = new System.Windows.Forms.DataGridView();
-            this.lettereBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.allLettersBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-            this.allLettersBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.allLettersBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.allLettersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.definitionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colorTypesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lettersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numPadDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsDone = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.lettereBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ynhSave = new System.ComponentModel.BackgroundWorker();
+            this.button1 = new System.Windows.Forms.Button();
+            this.ynhLoad = new System.ComponentModel.BackgroundWorker();
             this.notifyIconMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ynhDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lettereBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allLettersBindingSource3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allLettersBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allLettersBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allLettersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.definitionsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorTypesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ynhNotifyIcon
@@ -105,10 +96,6 @@
             this.ynhDataGridView.Size = new System.Drawing.Size(855, 427);
             this.ynhDataGridView.TabIndex = 1;
             // 
-            // lettereBindingSource
-            // 
-            this.lettereBindingSource.DataSource = typeof(YourNameHere.Definitions.Lettere);
-            // 
             // lettersDataGridViewTextBoxColumn
             // 
             this.lettersDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -135,11 +122,34 @@
             this.IsDone.Name = "IsDone";
             this.IsDone.ReadOnly = true;
             // 
+            // lettereBindingSource
+            // 
+            this.lettereBindingSource.DataSource = typeof(YourNameHere.Definitions.Lettere);
+            // 
+            // ynhSave
+            // 
+            this.ynhSave.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ynhSave_DoWork);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(940, 157);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // ynhLoad
+            // 
+            this.ynhLoad.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ynhLoad_DoWork);
+            // 
             // YourNameHere_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1046, 504);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ynhDataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "YourNameHere_Form";
@@ -147,12 +157,6 @@
             this.notifyIconMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ynhDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lettereBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allLettersBindingSource3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allLettersBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allLettersBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.allLettersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.definitionsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.colorTypesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -164,17 +168,14 @@
         private System.Windows.Forms.ToolStripMenuItem minimizeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.DataGridView ynhDataGridView;
-        private System.Windows.Forms.BindingSource definitionsBindingSource;
-        private System.Windows.Forms.BindingSource allLettersBindingSource;
-        private System.Windows.Forms.BindingSource allLettersBindingSource1;
-        private System.Windows.Forms.BindingSource allLettersBindingSource2;
-        private System.Windows.Forms.BindingSource allLettersBindingSource3;
         private System.Windows.Forms.BindingSource lettereBindingSource;
-        private System.Windows.Forms.BindingSource colorTypesBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn lettersDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn colorDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn numPadDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsDone;
+        private System.ComponentModel.BackgroundWorker ynhSave;
+        private System.Windows.Forms.Button button1;
+        private System.ComponentModel.BackgroundWorker ynhLoad;
     }
 }
 

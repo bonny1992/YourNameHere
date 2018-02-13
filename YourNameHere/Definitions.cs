@@ -17,7 +17,7 @@ namespace YourNameHere
         }
         public class AllLetters
         {
-            public Lettere[] Text { get; set; }
+            public List<Lettere> Text = new List<Lettere>();
         }
     }
 }

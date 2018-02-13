@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +18,12 @@ namespace YourNameHere
         public YourNameHere_Form()
         {
             InitializeComponent();
-            Definitions.Lettere test = new Definitions.Lettere();
+            /*Definitions.Lettere test = new Definitions.Lettere();
             test.Color = "black";
             test.Letters = "aeiou";
             test.NumPad = false;
-            lettereBindingSource.Add(test);
+            lettereBindingSource.Add(test);*/
+            ynhLoad.RunWorkerAsync();
         }
 
         private void ynhNotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -51,6 +55,54 @@ namespace YourNameHere
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ynhSave_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var folder = Path.Combine(Environment.GetFolderPath(
+                Environment.SpecialFolder.ApplicationData), "YourNameHere");
+            Directory.CreateDirectory(folder);
+            var fileName = Path.Combine(folder, "config.json");
+            Definitions.AllLetters temp = new Definitions.AllLetters();
+            foreach (DataGridViewRow row in ynhDataGridView.Rows)
+            {
+                var lettemp = (Definitions.Lettere)row.DataBoundItem;
+                temp.Text.Add(lettemp);
+            }
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Converters.Add(new JavaScriptDateTimeConverter());
+            serializer.NullValueHandling = NullValueHandling.Ignore;
+            using (StreamWriter sw = new StreamWriter(fileName))
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+                writer.Formatting = Formatting.Indented;
+                serializer.Serialize(writer, temp);
+            }
+            MessageBox.Show("Saved!");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ynhSave.RunWorkerAsync();
+        }
+
+        private void ynhLoad_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var folder = Path.Combine(Environment.GetFolderPath(
+                Environment.SpecialFolder.ApplicationData), "YourNameHere");
+            var fileName = Path.Combine(folder, "config.json");
+            if (!File.Exists(fileName)) return;
+            var text = File.ReadAllText(fileName);
+            Definitions.AllLetters full = JsonConvert.DeserializeObject<Definitions.AllLetters>(text);
+            foreach (Definitions.Lettere temp in full.Text)
+            {
+                MessageBox.Show(string.Format("{0},{1}", temp.Letters, temp.NumPad));
+                this.ynhDataGridView.Invoke((Action)delegate
+                {
+                    lettereBindingSource.Add(temp);
+                });
+            }
+            MessageBox.Show("Loading complete");
         }
     }
 }
