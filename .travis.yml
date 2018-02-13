@@ -1,23 +1,13 @@
 language: csharp
 solution: YourNameHere.sln
 before_deploy:
-  - git config --global user.email "builds@travis-ci.com"
-  - git config --global user.name "Travis CI"
-  - export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
-  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
-  - git push -q https://$TAGPERM@github.com/bonny1992/YourNameHere --tags
-  - ls -R
   - zip zip/YourNameHere.zip YourNameHere/bin/Release/*
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
     secure: JqNZmpXWuSGkMKnxWX/ExMGM0MMhRKB90andfuG0GU3rBtwjbRLJcxaEv64Bk2wGKMJBGP2zI0yDoKqZLM8GP+10DoNTHaAN7AnPSk19apF4wb4NFbIXzH4RKVjh5kgknkDEY3qFjJ6T3pyj1a+hce1W23pooULFCmcb8wQFbo3lF2UGgAyamcvlSoBZfjh0mBjC9nisDROmrSGWt3Pdi03scDrn4HvlDpapW6MbwXzAqMJB0LVB/VuByYkEMyEci4uL87jjfpjtN/S23ndoiT/NwJVEuhfhkCjqEn01kM471ynKEwfVRxr0FLcoBKCjYDcWewsNHbQU7rn3ysRFU4hkxhe5lV2asajdSf8Ptu0zTFxQOgPj2Kh6n/WMqb9hf+RyjjTA+Bbw2DrRCgy6k8bI3bkeplCo3DRcqcbUm8BCPHBI6B8rVCjPwbgd6H1kYdmv6L3jyXbMZNz5xsu+3UThnaFQtAJ1TsZAh/8cv3Ux6JmKBhhYYTdzQh5uaUY4+v+7jtDFtnTp7rAxLLzZr6vY1fxhdir3ghEq3Vv+EXxwXj42YBXLTgqv3fTKZQ+YvOPmz9FeFCWOMuN5dRBrIHY3wAwZieCZzG5e3FVtTH1umvNh4zIcab2/5/m8xQS4nPgVav/YIYUwlGMnZVJtQ8WjXo44qgYFxuNghaESjYA=
-  file: zip/YourNameHere-1.0.zip
+  file: zip/YourNameHere.zip
   on:
     tags: false
     repo: bonny1992/YourNameHere
-    all_branches: true
-branches:
-  except:
-    - /^*-v[0-9]/
