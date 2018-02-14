@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<application>
+    <title>YourNameHere</title>
+    <description>A simple program for Razer Keyboards to dinamically light some keys</description>
+    <author name="Bonny1992" contact="https://github.com/bonny1992/YourNameHere"/>
+    <device_supported keyboard="1" mouse="0" headset="0" mousepad="0" keypad="0" chromalink="0"/>
+	<category game="0"/>
+</application>
