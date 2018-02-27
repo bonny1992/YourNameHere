@@ -98,6 +98,10 @@
     <None Include="Resources\ynh-logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ChromaAppInfo.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ynh-icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
