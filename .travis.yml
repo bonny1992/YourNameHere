@@ -1,21 +1,21 @@
 language: csharp
 solution: YourNameHere.sln
 before_deploy:
-- zip releases/YourNameHere.zip YourNameHere/bin/Release/*
-- sudo apt-get -qq update
-- sudo apt-get install -y msitools
-- msi-packager YourNameHere/bin/Release releases/YourNameHere.msi -n=YourNameHere -v=1.1 -m=Bonny1992 -u=$guid.secure -i=YourNameHere/ynh-icon.ico -e=YourNameHere.exe -l
+  - zip releases/YourNameHere.zip YourNameHere/bin/Release/*
+  - sudo apt-get -qq update
+  - sudo apt-get install -y msitools
+  - msi-packager YourNameHere/bin/Release releases/YourNameHere.msi -n=YourNameHere -v=1.1 -m=Bonny1992 -u=$GUID -i=YourNameHere/ynh-icon.ico -e=YourNameHere.exe -l
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
     secure: JqNZmpXWuSGkMKnxWX/ExMGM0MMhRKB90andfuG0GU3rBtwjbRLJcxaEv64Bk2wGKMJBGP2zI0yDoKqZLM8GP+10DoNTHaAN7AnPSk19apF4wb4NFbIXzH4RKVjh5kgknkDEY3qFjJ6T3pyj1a+hce1W23pooULFCmcb8wQFbo3lF2UGgAyamcvlSoBZfjh0mBjC9nisDROmrSGWt3Pdi03scDrn4HvlDpapW6MbwXzAqMJB0LVB/VuByYkEMyEci4uL87jjfpjtN/S23ndoiT/NwJVEuhfhkCjqEn01kM471ynKEwfVRxr0FLcoBKCjYDcWewsNHbQU7rn3ysRFU4hkxhe5lV2asajdSf8Ptu0zTFxQOgPj2Kh6n/WMqb9hf+RyjjTA+Bbw2DrRCgy6k8bI3bkeplCo3DRcqcbUm8BCPHBI6B8rVCjPwbgd6H1kYdmv6L3jyXbMZNz5xsu+3UThnaFQtAJ1TsZAh/8cv3Ux6JmKBhhYYTdzQh5uaUY4+v+7jtDFtnTp7rAxLLzZr6vY1fxhdir3ghEq3Vv+EXxwXj42YBXLTgqv3fTKZQ+YvOPmz9FeFCWOMuN5dRBrIHY3wAwZieCZzG5e3FVtTH1umvNh4zIcab2/5/m8xQS4nPgVav/YIYUwlGMnZVJtQ8WjXo44qgYFxuNghaESjYA=
-  file: 
-  	- releases/YourNameHere.zip
-  	- releases/YourNameHere.msi
+  file_glob: true
+  file:
+    - releases/*
   on:
     tags: true
     repo: bonny1992/YourNameHere
 env:
-  guid:
-    secure: EDlcY0CRQx3anaV5ezjXC/tSjwXTEq2PHto/Yf5CznGl+Th748t8AuoAgrY9V2E/EmFN/P5PIUBTjZCforoyDgc1IBkaUow4MkTak4DXlbs1uXL/3cLM7G/MEna1p+O8vOXyAQwO7J8DHarDLRo0uEmHpYLaFOvJs2/ZfPjt23L2hwCdBnssYOeTqP8Rki7aQ/4plxNhrGENpe5uwnYJnbREUQT+FXw20ZF8CQoKxBY9/hdHItcb2U+nTATudq8R37yVWVELZwXD2z3sNdYtj/pHsvOJQlmbAKSLaDzlVTEPAMUNV4KXphS3OK07AmEeSJ1dLNLN2cDQiWBhIyh166hzt5vGrPiHFzUAwc6iokMH5Aul4ORqTVT5p2SI++dCSNNABks/s1SX+F1rboNodiP3u0n+VbgetCq99wlpilyGVcwB6iTXUUiuyOvIZu2yPVrLTp5phw6lJM+v4DOVIuii1SR+zMXztF9837dZOv0IBm0Yj3lw4XTN8Dn4OSDyu97gz4NM2e+Qkwkxe/Zxs/fdNMNDxZUbvIKi7p1RXckPg+6mpz6sxyB6m7H2jEpjwFB8IbqZjkslKBMvF6sHgR/Z0gFGp9cc8qVAnVyd/7G+mG8L3Nb8bpdxzBD2VUIsKzzsJ0nnxEhfftAWC6QzjYLAmCKU0h8wjHljuSUSbco=
+  global:
+    secure: eL25l/Z6q7OqKrqJzBKVJJ8w6V5x5cBII/LNNx6tLUJr8OwQfjdgSFiSD33Ihs+OUDBqoRJ6ndZYWIlmoGQCODt21OKXufRc91FqamdL4kHuV8x+hS8g/gEAetShCCWzXzLdNw4DrfpYGWm0ibki6yHgcm6BibMXZQVxzcBzNwmqdlqL646PvfaXeb9uu7FSgjFkO34nir9COGn8zt5tzYC5UZWSfr4Bvyd1MhV1mW8AyfY06Ieqp7XU3kc2fxYKY+Hjztw4YjdbBn21rtehk+M/N/IfQSe56T/7E9g9AZThwRaXxJ8Thx4/wF3mpcqyTrsdbjtj4h6tvXoJoh3r/kFLmXfxy3Zs5ltT7HA74HIQ+aAEzgI5SwVGoIhKB3OPORCTkJiN4xQgB1aQwsAdwwKrTOh4bA4LKLhzyMdyDPgNAGb6nWEEREvH9WZRI0/5hglYRmxFrLNJt8li7SeqnErM72syROLq6nkw8QgV4sWXZ7E/+ltIuJJtMdVvpM8xBGIPAVAFh+1Sy4wVZI9kNq1BDGt/bZ+uZVgpS0Oe52iIWmz2STXJIMCYtXWmTDUwNaSHs/LHANPKpYoyF5EegiRMY5/OdL2N2Cz2PXZHmvn+hk8DzD8sI1WXwx4Pi/wjhrCD8W5bYoln7QsIaeK56Awu7/6PdGKox6L6eNooFfc=
