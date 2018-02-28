@@ -4,6 +4,7 @@ before_deploy:
   - zip releases/YourNameHere.zip YourNameHere/bin/Release/*
   - nvm install 0.10
   - nvm use 0.10
+  - npm install --yes msi-packager
   - node msi.js
 deploy:
   provider: releases
