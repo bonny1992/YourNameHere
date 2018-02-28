@@ -19,6 +19,6 @@ var options = {
 }
 
 createMsi(options, function (err) {
-    if (err) throw err
+    if (err) console.log('Error: ' + err)
     console.log('Outputed to ' + options.output)
 })
