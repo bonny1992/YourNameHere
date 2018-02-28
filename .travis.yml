@@ -2,9 +2,9 @@ language: csharp
 solution: YourNameHere.sln
 before_deploy:
   - zip releases/YourNameHere.zip YourNameHere/bin/Release/*
-  - sudo apt-get -qq update
-  - sudo apt-get install -y msitools
-  - msi-packager YourNameHere/bin/Release releases/YourNameHere.msi -n=YourNameHere -v=1.1 -m=Bonny1992 -u=$GUID -i=YourNameHere/ynh-icon.ico -e=YourNameHere.exe -l
+  - nvm install 0.10
+  - nvm use 0.10
+  - node msi.js
 deploy:
   provider: releases
   skip_cleanup: true
