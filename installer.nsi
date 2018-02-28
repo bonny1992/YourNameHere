@@ -1,38 +1,20 @@
-Name "YourNameHere"
+!include "MUI.nsh"
 
-# define name of installer
-OutFile "releases/YourNameHere-setup.exe"
- 
-# define installation directory
-InstallDir $APPDATA/YourNameHere
- 
-RequestExecutionLevel user
- 
-Section
-	File /r "YourNameHere/bin/Release/*"
+!define MUI_ABORTWARNING # This will warn the user if he exits from the installer.
 
-    # set the installation directory as the destination for the following actions
-    SetOutPath $INSTDIR
+!insertmacro MUI_PAGE_WELCOME # Welcome to the installer page.
+!insertmacro MUI_PAGE_DIRECTORY # In which folder install page.
+!insertmacro MUI_PAGE_INSTFILES # Installing page.
+!insertmacro MUI_PAGE_FINISH # Finished installation page.
 
-	CreateShortCut "$SMPROGRAMS\YourNameHere\YourNameHere.lnk" "$INSTDIR\YourNameHere.exe"
- 
-    # create the uninstaller
-    WriteUninstaller "$INSTDIR\uninstall.exe"
- 
-    # create a shortcut named "new shortcut" in the start menu programs directory
-    # point the new shortcut at the program uninstaller
-    CreateShortCut "$SMPROGRAMS\YourNameHere\Uninstall.lnk" "$INSTDIR\uninstall.exe"
-SectionEnd
- 
-# uninstaller section start
-Section "uninstall"
- 
-    # first, delete the uninstaller
-    Delete /r "$INSTDIR"
- 
-    # second, remove the link from the start menu
-    Delete "$SMPROGRAMS\YourNameHere\Uninstall.lnk"
-	Delete "$SMPROGRAMS\YourNameHere\YourNameHere.lnk"
- 
-# uninstaller section end
+!insertmacro MUI_LANGUAGE "English"
+
+Name "YourNameHere" # Name of the installer (usually the name of the application to install).
+OutFile "releases/MyAppInstaller.exe" # Name of the installer's file.
+InstallDir "$APPDATA\YourNameHere" # Default installing folder ($PROGRAMFILES is Program Files folder).
+ShowInstDetails show # This will always show the installation details.
+
+Section "YourNameHere" # In this section add your files or your folders.
+  File /r YourNameHere/bin/Release/*
+  # Add your files with "File (Name of the file)", example: "File "$DESKTOP\MyApp.exe"" ($DESKTOP is Desktop folder); or add your folders always with "File (Name of the folder)\*", always add your folders with an asterisk, example: "File /r $DESKTOP\MyApp\*" (this will add its files and (with /r its subfolders)).
 SectionEnd
