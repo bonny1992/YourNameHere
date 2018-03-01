@@ -2,7 +2,7 @@ language: csharp
 solution: YourNameHere.sln
 before_deploy:
   - zip releases/YourNameHere.zip YourNameHere/bin/Release/*
-  - copy Setup/bin/Release/Setup.msi releases/Setup.msi
+  - cp Setup/bin/Release/Setup.msi releases/
 deploy:
   provider: releases
   skip_cleanup: true
