@@ -2,9 +2,7 @@ language: csharp
 solution: YourNameHere.sln
 before_deploy:
   - zip releases/YourNameHere.zip YourNameHere/bin/Release/*
-  - sudo apt-get -qq update
-  - sudo apt-get install -y nsis
-  - makensis installer.nsi
+  - copy Setup/bin/Release/Setup.msi releases/Setup.msi
 deploy:
   provider: releases
   skip_cleanup: true
